@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="form-container">
+    <h1>Todo-List</h1>
+    <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+      <input
+        type="text"
+        placeholder="Please enter your Todos"
+        name="todoItem"
+        ngModel
+        required
+        #name="ngModel"
+      />
+      <!-- <p style="color: red" *ngIf="!name.valid">Please enter the value</p> -->
+      <button type="submit" class="btn add">Add</button>
+    </form>
+  </div>
+  <div class="item-container" *ngIf="todoItems.length > 0">
+    <div *ngFor="let todo of todoItems; let i = index">
+      <app-list
+        [item]="todo"
+        [id]="i"
+        (index)="onAction($event)"
+        [state]="'Inprogress'"
+      ></app-list>
+    </div>
+  </div>
+  <h3 *ngIf="completedItems.length > 0">Completed Items</h3>
+  <div class="item-container" *ngIf="completedItems.length > 0">
+    <div *ngFor="let complete of completedItems; let i = index">
+      <app-list [item]="complete" [state]="'completed'"></app-list>
+    </div>
+  </div>
+</div>

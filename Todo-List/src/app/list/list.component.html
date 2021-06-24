@@ -1,0 +1,13 @@
+<div class="list-item">
+  <p>{{ item }}</p>
+  <button class="btn complete" (click)="onComplete()">
+    {{ state === "completed" ? "Completed" : "Complete" }}
+  </button>
+  <button
+    class="btn delete"
+    (click)="onDelete()"
+    *ngIf="state === 'Inprogress'"
+  >
+    Delete
+  </button>
+</div>
